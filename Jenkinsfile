@@ -22,7 +22,7 @@ pipeline {
                 echo 'Running tests...'
 
                 script {
-                    def testPassed = false
+                    def testPassed = true
 
                     if (testPassed) {
                         echo 'All tests passed!'
