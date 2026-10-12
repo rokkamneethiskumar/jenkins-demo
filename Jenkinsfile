@@ -1,23 +1,50 @@
 
-
 pipeline {
     agent any
 
-   
-stage('Test') {
-    steps {
-        echo 'Running tests...'
+    stages {
+        stage('Hello') {
+            steps {
+                echo 'Hello from Jenkins Pipeline!'
+                echo 'Triggered automatically by GitHub!'
+            }
+        }
 
-        script {
-            def testPassed = true
+        stage('Build') {
+            steps {
+                echo 'Building my application...'
+                echo 'Build completed successfully!'
+            }
+        }
 
-            if (testPassed) {
-                echo 'All tests passed!'
-            } else {
-                error 'Tests failed!'
+        stage('Test') {
+            steps {
+                echo 'Running tests...'
+
+                script {
+                    def testPassed = true
+
+                    if (testPassed) {
+                        echo 'All tests passed!'
+                    } else {
+                        error 'Tests failed!'
+                    }
+                }
             }
         }
     }
-}
 
+    post {
+        success {
+            echo 'Pipeline completed successfully!'
+        }
+
+        failure {
+            echo 'Pipeline failed. Please investigate!'
+        }
+
+        always {
+            echo 'Pipeline execution has finished.'
+        }
+    }
 }
