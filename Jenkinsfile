@@ -6,7 +6,13 @@ pipeline {
         stage('Hello') {
             steps {
                 echo 'Hello from Jenkins Pipeline!'
-                echo 'My first Jenkinsfile is working!'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo 'Building my application...'
+                echo 'Build completed successfully!'
             }
         }
     }
