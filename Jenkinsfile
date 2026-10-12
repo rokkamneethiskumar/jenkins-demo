@@ -2,11 +2,17 @@
 pipeline {
     agent any
 
+    environment {
+        APP_NAME = 'jenkins-demo'
+    }
+
     stages {
         stage('Hello') {
             steps {
                 echo 'Hello from Jenkins Pipeline!'
-                echo 'Triggered automatically by GitHub!'
+                echo "Job name: ${env.JOB_NAME}"
+                echo "Build number: ${env.BUILD_NUMBER}"
+                echo "Application: ${env.APP_NAME}"
             }
         }
 
@@ -48,3 +54,4 @@ pipeline {
         }
     }
 }
+
