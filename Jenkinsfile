@@ -21,8 +21,8 @@ pipeline {
             steps {
                 echo 'Running tests...'
                 echo 'All tests passed!'
+                echo 'Triggered automatically by GitHub!'
             }
         }
     }
 }
-echo 'Triggered automatically by GitHub!'
