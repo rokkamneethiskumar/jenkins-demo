@@ -2,6 +2,14 @@
 pipeline {
     agent any
 
+    parameters {
+        choice(
+            name: 'DEPLOY_ENV',
+            choices: ['dev', 'staging', 'production'],
+            description: 'Select the target environment'
+        )
+    }
+
     environment {
         APP_NAME = 'jenkins-demo'
     }
@@ -26,16 +34,13 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Running tests...'
+                echo 'All tests passed!'
+            }
+        }
 
-                script {
-                    def testPassed = true
-
-                    if (testPassed) {
-                        echo 'All tests passed!'
-                    } else {
-                        error 'Tests failed!'
-                    }
-                }
+        stage('Show Environment') {
+            steps {
+                echo "Selected environment: ${params.DEPLOY_ENV}"
             }
         }
     }
