@@ -43,6 +43,17 @@ pipeline {
                 echo "Selected environment: ${params.DEPLOY_ENV}"
             }
         }
+
+        stage('Staging Checks') {
+            when {
+                expression {
+                    params.DEPLOY_ENV == 'staging'
+                }
+            }
+            steps {
+                echo 'Running extra checks for staging!'
+            }
+        }
     }
 
     post {
@@ -59,4 +70,3 @@ pipeline {
         }
     }
 }
-
